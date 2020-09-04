@@ -11,3 +11,4 @@ do
     git pull
     ./redeploy.sh
   fi
+done

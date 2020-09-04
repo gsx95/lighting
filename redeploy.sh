@@ -1,2 +1,2 @@
 go build .
-systemctl restart lightingapp
+sudo systemctl restart lightingapp
