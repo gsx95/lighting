@@ -28,7 +28,7 @@ func main() {
 
 func start() {
 	for {
-		err = colorWipe(uint32(0x000020))
+		err := colorWipe(uint32(0x000020))
 		if err != nil {
 			fmt.Println("Error during wipe " + err.Error())
 			os.Exit(-1)
