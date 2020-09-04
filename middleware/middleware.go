@@ -11,7 +11,7 @@ type middleware struct {
 type Middleware interface {
 	End()
 	Clear()
-	SetFullColors(colors web.OneColorRequest)
+	SetFullColors(colors OneColorRequest)
 }
 
 func NewMiddleware() Middleware {
@@ -30,7 +30,7 @@ func (m *middleware) Clear() {
 	m.Ctrl.Clear()
 }
 
-func (m *middleware) SetFullColors(data web.OneColorRequest) {
+func (m *middleware) SetFullColors(data OneColorRequest) {
 	fc := Convert(data)
 	m.Ctrl.SetFullColors(fc)
 }

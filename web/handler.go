@@ -12,7 +12,7 @@ func Start() {
 	m := middleware.NewMiddleware()
 
 	http.HandleFunc("/set", func(w http.ResponseWriter, r *http.Request){
-		var data OneColorRequest
+		var data middleware.OneColorRequest
 		err := json.NewDecoder(r.Body).Decode(&data)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)

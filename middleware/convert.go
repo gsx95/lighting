@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-func Convert(req web.OneColorRequest) leds.FullColors {
+func Convert(req OneColorRequest) leds.FullColors {
 	hex := req.ColorHex
 	color := hexToColor(hex)
 	fc := leds.FullColors{}
