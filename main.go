@@ -10,7 +10,7 @@ import (
 
 const (
 	pin = 18
-	count = 16
+	count = 300
 	brightness = 255
 )
 
@@ -57,7 +57,7 @@ func colorWipe(color uint32) error {
 			return err
 		}
 
-		time.Sleep(2 * time.Millisecond)
+		time.Sleep(3 * time.Millisecond)
 	}
 
 	return nil
