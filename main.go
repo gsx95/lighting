@@ -28,19 +28,19 @@ func main() {
 
 func start() {
 	for {
-		err := colorWipe(uint32(0x000020))
+		err := colorWipe(uint32(0x0000ff))
 		if err != nil {
 			fmt.Println("Error during wipe " + err.Error())
 			os.Exit(-1)
 		}
 
-		err = colorWipe(uint32(0x002000))
+		err = colorWipe(uint32(0x00ff00))
 		if err != nil {
 			fmt.Println("Error during wipe " + err.Error())
 			os.Exit(-1)
 		}
 
-		err = colorWipe(uint32(0x200000))
+		err = colorWipe(uint32(0xff0000))
 		if err != nil {
 			fmt.Println("Error during wipe " + err.Error())
 			os.Exit(-1)
