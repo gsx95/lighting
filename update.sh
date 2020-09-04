@@ -1,10 +1,13 @@
-git fetch
-HEADHASH=$(git rev-parse HEAD)
-UPSTREAMHASH=$(git rev-parse master@{upstream})
+while true
+do
+  sleep 20
+  git fetch
+  HEADHASH=$(git rev-parse HEAD)
+  UPSTREAMHASH=$(git rev-parse master@{upstream})
 
-if [ "$HEADHASH" != "$UPSTREAMHASH" ]
-then
-  git reset --hard
-  git pull
-  ./redeploy.sh
-fi
+  if [ "$HEADHASH" != "$UPSTREAMHASH" ]
+  then
+    git reset --hard
+    git pull
+    ./redeploy.sh
+  fi
