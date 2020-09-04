@@ -3,7 +3,6 @@ package middleware
 import (
 	"fmt"
 	"lighting/leds"
-	"lighting/web"
 	"strconv"
 )
 

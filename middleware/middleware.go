@@ -2,7 +2,6 @@ package middleware
 
 import (
 	"lighting/leds"
-	"lighting/web"
 )
 
 type middleware struct {
