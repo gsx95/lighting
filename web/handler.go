@@ -29,6 +29,10 @@ func Start() {
 
 	})
 
+	http.HandleFunc("/clear", func(w http.ResponseWriter, r *http.Request){
+		m.Clear()
+	})
+
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
 	}

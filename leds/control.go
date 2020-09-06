@@ -7,7 +7,7 @@ import (
 )
 
 const(
-	LedCount = 300
+	LedCount = 90
 )
 
 type control struct {
