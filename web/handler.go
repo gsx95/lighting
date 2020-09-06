@@ -7,9 +7,7 @@ import (
 	"net/http"
 )
 
-func Start() {
-
-	m := middleware.NewMiddleware()
+func Start(m middleware.Middleware) {
 
 	http.HandleFunc("/set", func(w http.ResponseWriter, r *http.Request){
 		var data middleware.OneColorRequest
