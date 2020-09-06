@@ -26,11 +26,9 @@ func Start() {
 	})
 
 	http.HandleFunc("/off", func(w http.ResponseWriter, r *http.Request){
-
-	})
-
-	http.HandleFunc("/clear", func(w http.ResponseWriter, r *http.Request){
-		m.Clear()
+		m.SetFullColors(middleware.OneColorRequest{
+			ColorHex: "000000",
+		})
 	})
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {

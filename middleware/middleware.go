@@ -33,4 +33,5 @@ func (m *middleware) Clear() {
 func (m *middleware) SetFullColors(data OneColorRequest) {
 	fc := Convert(data)
 	m.Ctrl.SetFullColors(fc)
+	StoreLastConfig("one_color", fc)
 }
