@@ -20,13 +20,11 @@ func Start(m middleware.Middleware) {
 	})
 
 	http.HandleFunc("/on", func(w http.ResponseWriter, r *http.Request){
-
+		m.On()
 	})
 
 	http.HandleFunc("/off", func(w http.ResponseWriter, r *http.Request){
-		m.SetFullColors(middleware.OneColorRequest{
-			ColorHex: "000000",
-		})
+		m.Off()
 	})
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {

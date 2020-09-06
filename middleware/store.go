@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"lighting/leds"
 	"strings"
 )
 
@@ -13,7 +14,7 @@ type StoredConfig struct {
 }
 
 const(
-	lastConfigStorePath = "/home/ubuntu//store/lighting/last/"
+	lastConfigStorePath = "/home/ubuntu/store/lighting/last/"
 	typeFile = "type.data"
 	configFile = "config.data"
 )
@@ -22,7 +23,7 @@ func GetLastConfig() *StoredConfig {
 	dat, err := ioutil.ReadFile(lastConfigStorePath + typeFile)
 	if err != nil {
 		return &StoredConfig{
-			Type: "one",
+			Type: leds.FullColorType,
 			Config: "ffffff",
 		}
 	}
@@ -30,7 +31,7 @@ func GetLastConfig() *StoredConfig {
 	conf, err := ioutil.ReadFile(lastConfigStorePath + configFile)
 	if err != nil {
 		return &StoredConfig{
-			Type: "one",
+			Type: leds.FullColorType,
 			Config: "ffffff",
 		}
 	}

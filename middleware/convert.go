@@ -1,12 +1,13 @@
 package middleware
 
 import (
+	"encoding/json"
 	"fmt"
 	"lighting/leds"
 	"strconv"
 )
 
-func Convert(req OneColorRequest) leds.FullColors {
+func ConvertFullColor(req OneColorRequest) leds.FullColors {
 	hex := req.ColorHex
 	color := hexToColor(hex)
 	fc := leds.FullColors{}
@@ -14,6 +15,18 @@ func Convert(req OneColorRequest) leds.FullColors {
 		fc = append(fc, color)
 	}
 	return fc
+}
+
+func ConvertFullColorJson(jsonData string) leds.FullColors {
+	var data leds.FullColors
+	err := json.Unmarshal([]byte(jsonData), &data)
+	if err != nil {
+		fmt.Println(err)
+		return ConvertFullColor(OneColorRequest{
+			ColorHex: "ffffff",
+		})
+	}
+	return data
 }
 
 func hexToColor(hex string) uint32 {

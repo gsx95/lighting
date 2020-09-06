@@ -9,6 +9,8 @@ type middleware struct {
 }
 
 type Middleware interface {
+	On()
+	Off()
 	End()
 	SetFullColors(colors OneColorRequest)
 }
@@ -25,9 +27,23 @@ func (m *middleware) End() {
 	m.Ctrl.Stop()
 }
 
+func (m *middleware) On() {
+	storedConfig := GetLastConfig()
+	switch storedConfig.Type {
+	case leds.FullColorType:
+		m.Ctrl.SetFullColors(ConvertFullColorJson(storedConfig.Config))
+		break
+	}
+}
+
+func (m *middleware) Off() {
+	m.Ctrl.SetFullColors(ConvertFullColor(OneColorRequest{
+		ColorHex: "000000",
+	}))
+}
 
 func (m *middleware) SetFullColors(data OneColorRequest) {
-	fc := Convert(data)
+	fc := ConvertFullColor(data)
 	m.Ctrl.SetFullColors(fc)
-	StoreLastConfig("one_color", fc)
+	StoreLastConfig(leds.FullColorType, fc)
 }
