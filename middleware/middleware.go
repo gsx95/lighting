@@ -10,7 +10,6 @@ type middleware struct {
 
 type Middleware interface {
 	End()
-	Clear()
 	SetFullColors(colors OneColorRequest)
 }
 
@@ -26,9 +25,6 @@ func (m *middleware) End() {
 	m.Ctrl.Stop()
 }
 
-func (m *middleware) Clear() {
-	m.Ctrl.Clear()
-}
 
 func (m *middleware) SetFullColors(data OneColorRequest) {
 	fc := Convert(data)

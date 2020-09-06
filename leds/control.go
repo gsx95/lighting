@@ -20,7 +20,6 @@ type control struct {
 type Control interface {
 	Init()
 	Stop()
-	Clear()
 	SetFullColors(colors FullColors)
 }
 
@@ -44,12 +43,9 @@ func (c *control) Stop() {
 	ws2811.Fini()
 }
 
-func (c *control) Clear() {
-	ws2811.Clear()
-}
 
 func (c *control) SetFullColors(colors FullColors) {
-	c.Clear()
+	ws2811.Clear()
 	for i, color := range colors {
 		ws2811.SetLed(i, color)
 	}
