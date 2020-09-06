@@ -13,7 +13,7 @@ type StoredConfig struct {
 }
 
 const(
-	lastConfigStorePath = "~/store/lighting/last/"
+	lastConfigStorePath = "/home/ubuntu//store/lighting/last/"
 	typeFile = "type.data"
 	configFile = "config.data"
 )
