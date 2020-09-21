@@ -15,8 +15,8 @@ type Middleware interface {
 	SetFullColors(colors OneColorRequest)
 }
 
-func NewMiddleware() Middleware {
-	ctrl := leds.NewControl()
+func NewMiddleware(pin int) Middleware {
+	ctrl := leds.NewControl(pin)
 	ctrl.Init()
 	return &middleware{
 		Ctrl: ctrl,

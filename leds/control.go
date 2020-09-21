@@ -7,7 +7,7 @@ import (
 )
 
 const(
-	LedCount = 90
+	LedCount = 160
 )
 
 type control struct {
@@ -23,9 +23,9 @@ type Control interface {
 	SetFullColors(colors FullColors)
 }
 
-func NewControl() Control {
+func NewControl(pin int) Control {
 	return &control{
-		18,
+		pin,
 		LedCount,
 		255,
 	}
