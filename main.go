@@ -12,6 +12,7 @@ import (
 func main() {
 	// init led driver
 	pin, _ := strconv.Atoi(os.Args[1])
+	port := os.Args[2]
 	m := middleware.NewMiddleware(pin)
 	defer m.End()
 
@@ -23,5 +24,5 @@ func main() {
 		os.Exit(1)
 	}()
 
-	web.Start(m)
+	web.Start(m, port)
 }

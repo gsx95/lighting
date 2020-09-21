@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func Start(m middleware.Middleware) {
+func Start(m middleware.Middleware, port string) {
 
 	http.HandleFunc("/set", func(w http.ResponseWriter, r *http.Request){
 		var data middleware.OneColorRequest
@@ -27,7 +27,7 @@ func Start(m middleware.Middleware) {
 		m.Off()
 	})
 
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	if err := http.ListenAndServe(":" + port, nil); err != nil {
 		log.Fatal(err)
 	}
 }
