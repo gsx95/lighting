@@ -6,10 +6,6 @@ import (
 	"github.com/jgarff/rpi_ws281x/golang/ws2811"
 )
 
-const(
-	LedCount = 160
-)
-
 type control struct {
 	pin int
 	Count int
@@ -20,13 +16,13 @@ type control struct {
 type Control interface {
 	Init()
 	Stop()
-	SetFullColors(colors FullColors)
+	SetFullColors(colors ColorData)
 }
 
-func NewControl(pin int) Control {
+func NewControl(pin, ledCount int) Control {
 	return &control{
 		pin,
-		LedCount,
+		ledCount,
 		255,
 	}
 }
@@ -44,9 +40,9 @@ func (c *control) Stop() {
 }
 
 
-func (c *control) SetFullColors(colors FullColors) {
+func (c *control) SetFullColors(colorData ColorData) {
 	ws2811.Clear()
-	for i, color := range colors {
+	for i, color := range colorData.Colors {
 		ws2811.SetLed(i, color)
 	}
 	err := ws2811.Render()

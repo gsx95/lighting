@@ -4,4 +4,7 @@ package leds
 const (
 	FullColorType = "full_color"
 )
-type FullColors []uint32
+
+type ColorData struct {
+	Colors []uint32 `json:"colors"`
+}
