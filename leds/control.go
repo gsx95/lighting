@@ -20,11 +20,13 @@ type Control interface {
 }
 
 func NewControl(pin, ledCount int) Control {
-	return &control{
+	ctrl := &control{
 		pin,
 		ledCount,
 		255,
 	}
+	ctrl.Init()
+	return ctrl
 }
 
 func (c *control) Init() {
