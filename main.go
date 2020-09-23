@@ -13,8 +13,17 @@ import (
 
 func main() {
 
-	pin, _ := strconv.Atoi(os.Args[1])
-	ledCount, _ := strconv.Atoi(os.Args[1])
+	if len(os.Args) < 4 {
+		panic("provide arguments: pin, led count, port")
+	}
+	pin, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		panic("provide valid pin argument: \n" + err.Error())
+	}
+	ledCount, err := strconv.Atoi(os.Args[2])
+	if err != nil {
+		panic("provide valid led count argument: \n" + err.Error())
+	}
 	port := os.Args[3]
 
 	ctrl := leds.NewControl(pin, ledCount)
