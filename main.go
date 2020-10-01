@@ -52,6 +52,10 @@ func start(ctrl leds.Control, port string) {
 		ctrl.SetFullColors(data)
 	})
 
+	http.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request){
+		w.Write([]byte("pong"))
+	})
+
 	if err := http.ListenAndServe(":" + port, nil); err != nil {
 		log.Fatal(err)
 	}
