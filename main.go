@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"lighting/leds"
+	"lighting/util"
 	"log"
 	"net/http"
 	"os"
@@ -43,17 +44,15 @@ func main() {
 func start(ctrl leds.Control, port string) {
 
 	http.HandleFunc("/set", func(w http.ResponseWriter, r *http.Request){
+		reqId := r.URL.Query().Get("reqId")
 		var data leds.ColorData
 		err := json.NewDecoder(r.Body).Decode(&data)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
-		ctrl.SetFullColors(data)
-	})
-
-	http.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request){
-		w.Write([]byte("pong"))
+		util.Log("received-lighting-request", "received set request", reqId, data.ToString())
+		ctrl.SetFullColors(data, reqId)
 	})
 
 	if err := http.ListenAndServe(":" + port, nil); err != nil {

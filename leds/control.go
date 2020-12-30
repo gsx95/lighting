@@ -2,6 +2,7 @@ package leds
 
 import (
 	"fmt"
+	"lighting/util"
 	"os"
 	"github.com/jgarff/rpi_ws281x/golang/ws2811"
 )
@@ -16,7 +17,7 @@ type control struct {
 type Control interface {
 	Init()
 	Stop()
-	SetFullColors(colors ColorData)
+	SetFullColors(colors ColorData, reqId string)
 }
 
 func NewControl(pin, ledCount int) Control {
@@ -30,6 +31,7 @@ func NewControl(pin, ledCount int) Control {
 }
 
 func (c *control) Init() {
+	util.Log("lighting-controls", "starting lighting", "", "")
 	err := ws2811.Init(c.pin, c.Count, c.brightness)
 	if err != nil {
 		fmt.Println(err)
@@ -38,11 +40,13 @@ func (c *control) Init() {
 }
 
 func (c *control) Stop() {
+	util.Log("lighting-controls", "stopping lighting", "", "")
 	ws2811.Fini()
 }
 
 
-func (c *control) SetFullColors(colorData ColorData) {
+func (c *control) SetFullColors(colorData ColorData, reqId string) {
+	util.Log("lighting-controls", "set colors", reqId, colorData.ToString())
 	ws2811.Clear()
 	for i, color := range colorData.Colors {
 		ws2811.SetLed(i, color)
