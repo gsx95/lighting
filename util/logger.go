@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+var HostName string
+
 type logMessage struct {
 	Timestamp string `json:"timestamp"`
 	Type      string `json:"type"`
@@ -21,7 +23,7 @@ func Log(actionType string, msg string, requestId string, body string) {
 	message := logMessage{
 		Timestamp: time.Now().Format(time.RFC3339),
 		Type: actionType,
-		Sender: "lighting",
+		Sender: "lighting-" + HostName,
 		RequestID: requestId,
 		Message: msg,
 		Body: body,

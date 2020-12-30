@@ -25,6 +25,12 @@ func main() {
 	if err != nil {
 		panic("provide valid led count argument: \n" + err.Error())
 	}
+
+	util.HostName, err = os.Hostname()
+	if err != nil {
+		panic("could not get hostname: \n" + err.Error())
+	}
+
 	port := os.Args[3]
 
 	ctrl := leds.NewControl(pin, ledCount)
